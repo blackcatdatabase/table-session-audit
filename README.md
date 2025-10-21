@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-> Schema package for table **session_audit** (repo: $slug).
+> Schema package for table **session_audit** (repo: `session-audit`).
 
 ## Files
 ```
@@ -57,19 +57,19 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```mermaid
 erDiagram
   SESSION_AUDIT {
-    BIGINT id PK
-    BINARY(32) session_token
-    VARCHAR(64) session_token_key_version
-    VARCHAR(64) csrf_key_version
-    VARCHAR(128) session_id
-    VARCHAR(64) event
-    BIGINT user_id
-    BINARY(32) ip_hash
-    VARCHAR(64) ip_hash_key_version
-    VARCHAR(1024) user_agent
+    INT id PK
+    BLOB session_token
+    VARCHAR session_token_key_version
+    VARCHAR csrf_key_version
+    VARCHAR session_id
+    VARCHAR event
+    INT user_id
+    BLOB ip_hash
+    VARCHAR ip_hash_key_version
+    VARCHAR user_agent
     JSON meta_json
-    VARCHAR(32) outcome
-    DATETIME(6) created_at
+    VARCHAR outcome
+    DATETIME created_at
   }
   SESSION_AUDIT }o--|| USERS : "user_id"
 ```
