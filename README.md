@@ -71,7 +71,7 @@ erDiagram
     VARCHAR(32) outcome
     DATETIME(6) created_at
   }
-  SESSION_AUDIT }o--|| USERS : (user_id)
+  SESSION_AUDIT }o--|| USERS : "user_id"
 ```
 
 ## Indexes
