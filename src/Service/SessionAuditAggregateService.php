@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BlackCat\Database\Packages\SessionAudit\Service;
 
-use BlackCat\Core\Database\Database;
+use BlackCat\Core\Database;
 use BlackCat\Database\Packages\SessionAudit\Dto\SessionAuditDto;
 use BlackCat\Database\Packages\SessionAudit\Mapper\SessionAuditDtoMapper;
 use BlackCat\Database\Packages\SessionAudit\Repository\SessionAuditRepository;
