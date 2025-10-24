@@ -1,5 +1,6 @@
--- Auto-generated from schema-map.psd1 (map@6cefe8e)
--- table: session_audit
+-- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- engine: mysql
+-- table:  session_audit
 CREATE TABLE IF NOT EXISTS session_audit (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   session_token BINARY(32) NULL,

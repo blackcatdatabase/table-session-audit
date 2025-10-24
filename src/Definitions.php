@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\SessionAudit;
 final class Definitions {
     // --- základní metadata ---
     public static function table(): string { return 'session_audit'; }
-    public static function contractView(): string { return 'v_session_audit_contract'; }
+    public static function contractView(): string { return 'vw_session_audit'; }
     /** @return string[] */
     public static function columns(): array { return [ 'id', 'session_token', 'session_token_key_version', 'csrf_key_version', 'session_id', 'event', 'user_id', 'ip_hash', 'ip_hash_key_version', 'user_agent', 'meta_json', 'outcome', 'created_at' ]; }
     public static function pk(): string { return 'id'; }
