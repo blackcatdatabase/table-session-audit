@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.psd1 (map@38d5403)
+-- Auto-generated from schema-map-mysql.psd1 (map@c5e4097)
 -- engine: mysql
 -- table:  session_audit
 CREATE TABLE IF NOT EXISTS session_audit (
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS session_audit (
   session_token_key_version VARCHAR(64) NULL,
   csrf_key_version VARCHAR(64) NULL,
   session_id VARCHAR(128) NULL,
-  event VARCHAR(64) NOT NULL,
+  `event` VARCHAR(64) NOT NULL,
   user_id BIGINT UNSIGNED NULL,
   ip_hash BINARY(32) NULL,
   ip_hash_key_version VARCHAR(64) NULL,
@@ -19,10 +19,10 @@ CREATE TABLE IF NOT EXISTS session_audit (
   INDEX idx_session_audit_session_id (session_id),
   INDEX idx_session_audit_user_id (user_id),
   INDEX idx_session_audit_created_at (created_at),
-  INDEX idx_session_audit_event (event),
+  INDEX idx_session_audit_event (`event`),
   INDEX idx_session_audit_ip_hash (ip_hash),
   INDEX idx_session_audit_ip_key (ip_hash_key_version),
-  INDEX idx_session_audit_event_time (event, created_at),
-  INDEX idx_session_audit_user_event_time (user_id, event, created_at),
+  INDEX idx_session_audit_event_time (`event`, created_at),
+  INDEX idx_session_audit_user_event_time (user_id, `event`, created_at),
   INDEX idx_session_audit_token_time (session_token, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
