@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  session_audit
 -- Contract view for [session_audit]
