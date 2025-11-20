@@ -6,9 +6,11 @@
 CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_session_audit AS
 SELECT
   id,
-  session_token,
-  CAST(LPAD(HEX(session_token), 64, '0') AS CHAR(64)) AS session_token_hex,
+  session_token_hash,
+  CAST(LPAD(HEX(session_token_hash), 64, '0') AS CHAR(64)) AS session_token_hash_hex,
   session_token_key_version,
+  csrf_token_hash,
+  CAST(LPAD(HEX(csrf_token_hash), 64, '0') AS CHAR(64)) AS csrf_token_hash_hex,
   csrf_key_version,
   session_id,
   `event`,
