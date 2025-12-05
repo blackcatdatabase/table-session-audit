@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.yaml (map@74ce4f4)
+-- Auto-generated from schema-map-postgres.yaml (map@sha1:F0EE237771FBA8DD7C4E886FF276F91A862C3718)
 -- engine: postgres
 -- table:  session_audit
 
@@ -13,6 +13,8 @@ CREATE INDEX IF NOT EXISTS idx_session_audit_created_at ON session_audit (create
 CREATE INDEX IF NOT EXISTS idx_session_audit_event ON session_audit (event);
 
 CREATE INDEX IF NOT EXISTS idx_session_audit_ip_hash ON session_audit (ip_hash);
+
+CREATE INDEX IF NOT EXISTS idx_session_audit_ip_key ON session_audit (ip_hash_key_version);
 
 CREATE INDEX IF NOT EXISTS idx_session_audit_event_time ON session_audit (event, created_at);
 
