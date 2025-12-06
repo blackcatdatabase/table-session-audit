@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class SessionAuditDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'session_token_hash' => 'sessionTokenHash', 'session_token_key_version' => 'sessionTokenKeyVersion', 'csrf_token_hash' => 'csrfTokenHash', 'csrf_key_version' => 'csrfKeyVersion', 'session_id' => 'sessionId', 'user_id' => 'userId', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'user_agent' => 'userAgent', 'meta_json' => 'metaJson', 'created_at' => 'createdAt' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'session_token_hash' => 'sessionTokenHash', 'session_token_key_version' => 'sessionTokenKeyVersion', 'csrf_token_hash' => 'csrfTokenHash', 'csrf_key_version' => 'csrfKeyVersion', 'session_id' => 'sessionId', 'event' => 'event', 'user_id' => 'userId', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'user_agent' => 'userAgent', 'meta_json' => 'metaJson', 'outcome' => 'outcome', 'created_at' => 'createdAt' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [];
@@ -39,13 +39,8 @@ final class SessionAuditDtoMapper
 
     private static function tz(): DateTimeZone
     {
-        if (self::$tzObj instanceof DateTimeZone) {
-            return self::$tzObj;
-        }
-        try {
+        if (!(self::$tzObj instanceof DateTimeZone)) {
             self::$tzObj = new DateTimeZone(self::TZ);
-        } catch (\Throwable) {
-            self::$tzObj = new DateTimeZone('UTC');
         }
         return self::$tzObj;
     }
