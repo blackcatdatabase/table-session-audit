@@ -5,13 +5,13 @@ Low-level session lifecycle and security events.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |
+| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |
 | csrf_key_version | VARCHAR(64) | YES |  | Key version for CSRF related data. |
 | event | VARCHAR(64) | NO |  | Event code (e.g., created, rotated, revoked). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| ip_hash | BYTEA | YES |  | Hashed IP. |
+| ip_hash | BINARY(32) | YES |  | Hashed IP. |
 | ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
-| meta_json | JSONB | YES |  | JSON metadata. |
+| meta_json | JSON | YES |  | JSON metadata. |
 | outcome | VARCHAR(32) | YES |  | Outcome label (e.g., success, fail). |
 | session_id | VARCHAR(128) | YES |  | Framework session id (string). |
 | session_token |  | YES |  | Hashed session token. |
@@ -71,5 +71,5 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_session_audit | mysql | algorithm=MERGE, security=INVOKER | [packages\session-audit\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/session-audit/schema/040_views.mysql.sql) |
-| vw_session_audit | postgres |  | [packages\session-audit\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/session-audit/schema/040_views.postgres.sql) |
+| vw_session_audit | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_session_audit | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
