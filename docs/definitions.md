@@ -5,19 +5,19 @@ Low-level session lifecycle and security events.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |
-| csrf_key_version | VARCHAR(64) | YES |  | Key version for CSRF related data. |
-| event | VARCHAR(64) | NO |  | Event code (e.g., created, rotated, revoked). |
 | id | BIGINT | NO |  | Surrogate primary key. |
+| session_token_key_version | VARCHAR(64) | YES |  | Key version for session_token. |
+| csrf_key_version | VARCHAR(64) | YES |  | Key version for CSRF related data. |
+| session_id | VARCHAR(128) | YES |  | Framework session id (string). |
+| event | VARCHAR(64) | NO |  | Event code (e.g., created, rotated, revoked). |
+| user_id | BIGINT | YES |  | User (FK users.id), optional. |
 | ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed IP. |
 | ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
+| user_agent | VARCHAR(1024) | YES |  | Client user agent. |
 | meta_json | mysql: JSON / postgres: JSONB | YES |  | JSON metadata. |
 | outcome | VARCHAR(32) | YES |  | Outcome label (e.g., success, fail). |
-| session_id | VARCHAR(128) | YES |  | Framework session id (string). |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |
 | session_token |  | YES |  | Hashed session token. |
-| session_token_key_version | VARCHAR(64) | YES |  | Key version for session_token. |
-| user_agent | VARCHAR(1024) | YES |  | Client user agent. |
-| user_id | BIGINT | YES |  | User (FK users.id), optional. |
 
 ## Engine Details
 
