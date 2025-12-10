@@ -71,5 +71,5 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_session_audit | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
-| vw_session_audit | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
+| vw_session_audit | mysql | algorithm=MERGE, security=INVOKER | [../schema/040_views.mysql.sql](../schema/040_views.mysql.sql) |
+| vw_session_audit | postgres |  | [../schema/040_views.postgres.sql](../schema/040_views.postgres.sql) |
