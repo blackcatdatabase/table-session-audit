@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'session_token_key_version', 'csrf_key_version', 'session_id', 'event', 'ip_hash_key_version', 'user_agent', 'outcome' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'session_token_key_version', 'csrf_key_version', 'session_id', 'event', 'user_id', 'ip_hash_key_version', 'user_agent', 'outcome', 'created_at' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'session_token_key_version', 'csrf_key_version', 'session_id', 'event', 'user_id', 'ip_hash_key_version', 'user_agent', 'outcome', 'created_at' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
