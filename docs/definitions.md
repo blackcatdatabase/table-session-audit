@@ -3,21 +3,22 @@
 Low-level session lifecycle and security events.
 
 ## Columns
-| Column | Type | Null | Default | Description |
-| --- | --- | --- | --- | --- |
-| id | BIGINT | NO |  | Surrogate primary key. |
-| session_token_key_version | VARCHAR(64) | YES |  | Key version for session_token. |
-| csrf_key_version | VARCHAR(64) | YES |  | Key version for CSRF related data. |
-| session_id | VARCHAR(128) | YES |  | Framework session id (string). |
-| event | VARCHAR(64) | NO |  | Event code (e.g., created, rotated, revoked). |
-| user_id | BIGINT | YES |  | User (FK users.id), optional. |
-| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed IP. |
-| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
-| user_agent | VARCHAR(1024) | YES |  | Client user agent. |
-| meta_json | mysql: JSON / postgres: JSONB | YES |  | JSON metadata. |
-| outcome | VARCHAR(32) | YES |  | Outcome label (e.g., success, fail). |
-| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |
-| session_token |  | YES |  | Hashed session token. |
+| Column | Type | Null | Default | Description | Crypto |
+| --- | --- | --- | --- | --- | --- |
+| id | BIGINT | NO |  | Surrogate primary key. |  |
+| session_token_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed session token. | `hmac`<br/>ctx: `db.hmac.session_audit.session_token_hash`<br/>kv: `session_token_key_version` |
+| session_token_key_version | VARCHAR(64) | YES |  | Key version for session_token_hash. | key version for: `session_token_hash` |
+| csrf_token_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed CSRF token. | `hmac`<br/>ctx: `db.hmac.session_audit.csrf_token_hash`<br/>kv: `csrf_key_version` |
+| csrf_key_version | VARCHAR(64) | YES |  | Key version for csrf_token_hash. | key version for: `csrf_token_hash` |
+| session_id | VARCHAR(128) | YES |  | Framework session id (string). |  |
+| event | VARCHAR(64) | NO |  | Event code (e.g., created, rotated, revoked). |  |
+| user_id | BIGINT | YES |  | User (FK users.id), optional. |  |
+| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed IP. | `hmac`<br/>ctx: `db.hmac.session_audit.ip_hash`<br/>kv: `ip_hash_key_version` |
+| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. | key version for: `ip_hash` |
+| user_agent | VARCHAR(1024) | YES |  | Client user agent. |  |
+| meta_json | mysql: JSON / postgres: JSONB | YES |  | JSON metadata. |  |
+| outcome | VARCHAR(32) | YES |  | Outcome label (e.g., success, fail). |  |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Event timestamp (UTC). |  |
 
 ## Engine Details
 
